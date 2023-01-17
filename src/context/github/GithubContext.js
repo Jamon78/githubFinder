@@ -1,6 +1,6 @@
-import { CreateContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
-const GithubContext = CreateContext();
+const GithubContext = createContext();
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
@@ -17,6 +17,7 @@ export const GithubProvider = ({ children }) => {
     });
 
     const data = await response.json();
+
     setUsers(data);
     setLoading(false);
   };
@@ -26,6 +27,7 @@ export const GithubProvider = ({ children }) => {
       value={{
         users,
         loading,
+        fetchUsers,
       }}
     >
       {children}
